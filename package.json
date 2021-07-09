@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:root": "cross-env NODE_ENV=root vue-cli-service build",
+    "build:apps": "cross-env NODE_ENV=apps vue-cli-service build",
+    "build:serve": "cross-env NODE_ENV=serve vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -25,6 +27,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-plugin-import": "^1.13.3",
+    "cross-env": "^7.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",

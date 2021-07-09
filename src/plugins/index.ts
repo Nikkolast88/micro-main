@@ -1,5 +1,7 @@
 // import { App } from 'vue';
 import { registerMicroApps, start } from 'qiankun';
+const { buildConfig } = require('../../buildConfig.json');
+const env = process.env.NODE_ENV || '';
 // import {
 //   ElButton, 
 //   ElMenu,
@@ -18,12 +20,13 @@ import { registerMicroApps, start } from 'qiankun';
 
 const apps = [
   {
-    name: 'Vue3',
-    entry: process.env.VUE_APP_SUB_VUE as string,
+    name: 'micro-sub',
+    entry: `${buildConfig[env] ? buildConfig[env] + 'micro-sub/' : '//localhost:3000'}`,
     container: '#app',
-    activeRule: '/#/vue3',
+    activeRule: '/micro-sub',
   },
 ];
+console.log(apps);
 export function registerMicro(): void {
   registerMicroApps(apps);
   start();
