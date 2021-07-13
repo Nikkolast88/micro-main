@@ -1,5 +1,6 @@
 // http.ts
 
+import { HttpResponse } from '@/typings/http';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const headers: Readonly<Record<string, string | boolean>> = {
@@ -41,7 +42,10 @@ class Http {
     http.interceptors.request.use(injectToken, (error) => Promise.reject(error));
 
     http.interceptors.response.use(
-      (response) => response,
+      (response: AxiosResponse<HttpResponse<any>>) => {
+        const data = response.data;
+        return this.handleBackError(data);
+      },
       (error) => {
         const { response } = error;
         return this.handleError(response);
@@ -105,6 +109,31 @@ class Http {
     }
 
     return Promise.reject(error);
+  }
+  // 接口200，后端抛出的异常
+  private handleBackError(data: HttpResponse<any>) {
+    const { status, body, msg } = data;
+    switch (status) {
+      case 401:
+        //认证未通过
+        break;
+      case 402:
+        // 请求参数错误
+        break;
+      case 403:
+        // 业务异常
+        break;
+      case 500:
+        // 服务器错误
+        break;
+      case 501:
+        // 接口未授权
+        break;
+      default:
+        // 0 成功
+        return Promise.resolve(body);
+    }
+    return Promise.reject(msg);
   }
 }
 

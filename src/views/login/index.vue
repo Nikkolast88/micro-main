@@ -1,14 +1,15 @@
 <template>
   <div>
-    <el-button type="primary">默认</el-button>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { ElButton } from 'element-plus';
+import { UserLogin } from '@/api/user';
 export default defineComponent({
-  components: {
-    ElButton,
+  setup() {
+    UserLogin({ id: 1 }).then((resp) => {
+      console.log(resp);
+    });
   },
 });
 </script>

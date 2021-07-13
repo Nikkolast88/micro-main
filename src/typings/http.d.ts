@@ -6,5 +6,5 @@
 export interface HttpResponse<T> {
   status: number;
   msg: string;
-  body: T
+  body: T;
 }

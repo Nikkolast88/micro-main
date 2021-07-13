@@ -1,7 +1,7 @@
 <!--
  * @Author: dengriguang@my7g.cn
  * @since: 2021-04-16 15:57:33
- * @lastTime: 2021-07-13 15:25:59
+ * @lastTime: 2021-07-13 17:00:40
  * @LastAuthor: Do not edit
  * @文件相对于项目的路径: /micro-main/src/components/GlobalHeader/AvatarDropdown.vue
  * @Description: 头部用户组件
@@ -142,8 +142,8 @@
 
 <script lang="ts">
 import { defineComponent, nextTick } from 'vue';
-// import { getUserInfo } from '@/api/login';
-interface IForm {
+import { UserInfo } from '@/api/user';
+interface IUser {
   userName: string;
   loginName: string;
   mobile: string;
@@ -208,7 +208,7 @@ export default defineComponent ({
         expireType: '',
         imageFile: '',
         imageUrl: '',
-      } as IForm,
+      } as IUser,
       dialogRules: {
         userName: [{ required: true, max: 6, message: '仅支持6个字符以内（中文、字母及数字）' }, { validator: validateName }],
         orgName: [{ required: true, message: '' }],
@@ -288,9 +288,9 @@ export default defineComponent ({
     updateUserHandle() {
     },
     getUserInfoHandle() {
-      // getUserInfo().then((resp) => {
-      //   console.log(resp);
-      // });
+      UserInfo<IUser>({ id: '1' }).then((resp) => {
+        console.log(resp);
+      });
     },
   },
 });
