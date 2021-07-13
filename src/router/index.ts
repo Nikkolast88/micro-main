@@ -1,14 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-
+import { UserLayout } from '@/layout';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/login',
+    redirect: '/user/login',
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/login/index.vue'),
+    path: '/user',
+    component: UserLayout,
+    children: [
+      {
+        path: 'login',
+        name: 'Login',
+        component: () => import('@/views/login/index.vue'),
+      },
+    ],
   },
   {
     path: '/404',

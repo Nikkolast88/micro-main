@@ -1,6 +1,6 @@
 {
   "buildConfig": {
-    "root": "",
+    "root": "/",
     "apps": "/apps/",
     "serve": ""
   }

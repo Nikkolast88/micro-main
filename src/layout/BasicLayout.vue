@@ -26,7 +26,7 @@
       <el-container>
         <header class="ant-layout-header" style="height: 64px; line-height: 64px; background: transparent;"></header>
         <el-header class="global-header fixed-header" style="width: calc(100% - 240px);">
-          <header-container :is-show="isShow"></header-container>
+          <basic-header :is-show="isShow"></basic-header>
         </el-header>
         <el-main style="background:#F2F6FC;" class="main-body">
           <page-title></page-title>
@@ -40,41 +40,45 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, toRefs } from 'vue';
+import { defineComponent, reactive, ref, toRefs } from 'vue';
 import SubMenu from './components/SubMenu.vue';
-import HeaderContainer from '@/components/GlobalHeader/index.vue';
+import BasicHeader from '@/components/GlobalHeader/BasicHeader.vue';
 import Logo from '@/layout/components/Logo.vue';
 import PageTitle from './components/PageTitle.vue';
-// import { asyncRouter } from '@/router/index';
+
 import { useRoute } from 'vue-router';
-import { ProjectSvg } from '@/icons';
-import { useStore } from 'vuex';
+import Schedule from '@/icons/schedule.svg';
+interface MenuProp {
+  meta: {
+    title: string;
+    icon: string;
+    hidden: boolean;
+  };
+  path: string;
+  children: MenuProp[];
+}
 export default defineComponent({
   name: 'BasicLayout',
   components: {
     SubMenu,
-    HeaderContainer,
+    BasicHeader,
     Logo,
-    ProjectSvg,
     PageTitle,
   },
   setup() {
-    const $store = useStore();
     const $route = useRoute();
     let flag = false;
-    $store.getters.permission_menu.map((e: any) => {if (e.path === '/workbench') flag = true;});
-    const menus = computed(() => $store.getters.permission_menu);
     const isShow = ref(flag);
     // 当前动态路由
     const state = reactive({
-      currentMenu: menus,
+      currentMenu: [] as MenuProp[],
       selectedKeys: $route.path,
     });
 
     return {
       ...toRefs(state),
-      menus,
       isShow,
+      Schedule,
     };
   },
 });
