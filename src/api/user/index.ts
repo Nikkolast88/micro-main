@@ -1,5 +1,9 @@
 import { http } from '@/utils/http';
 
+/**
+ * @description: 用户
+ * @param {string | number} id ID
+ */
 type TUser = {
   id: string | number;
   name?: string;
@@ -13,7 +17,7 @@ type TUser = {
  * @return {*}
  */
 export function UserInfo<T>(user: TUser): Promise<T> {
-  return http.post<TUser, T>('/users', user);
+  return http.post('/users', user);
 }
 
 /**

@@ -5,9 +5,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { UserLogin } from '@/api/user';
+interface IUser {
+  id: string | number;
+}
 export default defineComponent({
   setup() {
-    UserLogin({ id: 1 }).then((resp) => {
+    UserLogin<IUser[]>({ id: 1 }).then((resp) => {
       console.log(resp);
     });
   },
