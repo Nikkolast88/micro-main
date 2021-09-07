@@ -21,7 +21,7 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
     }
     return config;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error as string);
   }
 };
 
@@ -39,10 +39,12 @@ class Http {
       withCredentials: true,
     });
 
-    http.interceptors.request.use(injectToken, (error) => Promise.reject(error));
+    http.interceptors.request.use(injectToken, (error) =>
+      Promise.reject(error),
+    );
 
     http.interceptors.response.use(
-      (response: AxiosResponse<HttpResponse<any>>) => {
+      (response: AxiosResponse<HttpResponse<null>>) => {
         const data = response.data;
         return this.handleBackError(data);
       },
@@ -56,15 +58,20 @@ class Http {
     return http;
   }
 
-  request<T = any, R = AxiosResponse<T>>(config: AxiosRequestConfig): Promise<R> {
+  request<T = unknown, R = AxiosResponse<T>>(
+    config: AxiosRequestConfig,
+  ): Promise<R> {
     return this.http.request(config);
   }
 
-  get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
+  get<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
     return this.http.get<T, R>(url, config);
   }
 
-  post<T = any, R = AxiosResponse<T>>(
+  post<T = unknown, R = AxiosResponse<T>>(
     url: string,
     data?: T,
     config?: AxiosRequestConfig,
@@ -72,7 +79,7 @@ class Http {
     return this.http.post<T, R>(url, data, config);
   }
 
-  put<T = any, R = AxiosResponse<T>>(
+  put<T = unknown, R = AxiosResponse<T>>(
     url: string,
     data?: T,
     config?: AxiosRequestConfig,
@@ -80,15 +87,18 @@ class Http {
     return this.http.put<T, R>(url, data, config);
   }
 
-  delete<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
+  delete<T = unknown, R = AxiosResponse<T>>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<R> {
     return this.http.delete<T, R>(url, config);
   }
 
   // 处理全局应用错误
   // 我们可以根据状态代码处理一般的应用程序错误
-  private handleError(error: any) {
+  private handleError(error: { status: number }) {
     const { status } = error;
-    
+
     switch (status) {
       case 500: {
         // Handle InternalServerError
@@ -111,7 +121,7 @@ class Http {
     return Promise.reject(error);
   }
   // 接口200，后端抛出的异常
-  private handleBackError(data: HttpResponse<any>) {
+  private handleBackError(data: HttpResponse<null>) {
     const { status, body, msg } = data;
     switch (status) {
       case 401:

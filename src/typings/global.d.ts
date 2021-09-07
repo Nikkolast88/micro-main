@@ -2,5 +2,5 @@
 interface Window {
   ServerConfig: {
     BASE_URL: string;
-  }
+  };
 }
