@@ -65,6 +65,6 @@ export async function loadLocaleMessages(
 }
 export function getLanguage(): string {
   return '';
-};
+}
 
 export default i18n;

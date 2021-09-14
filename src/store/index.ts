@@ -40,7 +40,6 @@ if (module.hot) {
 
 export function setupStore(app: App<Element>): void {
   app.use(store);
-  console.log(store);
 }
 
 export default store;

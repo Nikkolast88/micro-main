@@ -5,12 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
   },
   "dependencies": {
     "axios": "^0.21.4",
     "dayjs": "^1.10.6",
-    "element-plus": "^1.1.0-beta.9",
+    "element-plus": "^1.1.0-beta.10",
     "qiankun": "^2.4.10",
     "vue": "^3.2.9",
     "vue-i18n": "^9.1.7",

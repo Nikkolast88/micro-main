@@ -1,6 +1,5 @@
 import { App } from 'vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
-import { I18n, Composer } from 'vue-i18n';
+import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteRecordRaw, Router } from 'vue-router';
 import { createRouterGuards } from './RouterGuards';
 
@@ -14,25 +13,22 @@ modules.keys().forEach((key: string) => {
   routeModules.push(...modList);
 });
 
-export function setupRouter(app: App, i18n: I18n): Router {
-  const locale: string =
-    i18n.mode === 'legacy'
-      ? i18n.global.locale
-      : (i18n.global as unknown as Composer).locale.value;
+export function setupRouter(app: App): Router {
   const constantRouter: Array<RouteRecordRaw> = [
     {
-      path: '/:locale/',
+      path: '/',
       name: 'Index',
       component: () => import('@/views/System/index.vue'),
     },
     {
-      path: '/:pathMatch(.*)*',
-      redirect: () => `/${locale}`,
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/views/Login/index.vue'),
     },
   ];
 
   const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: constantRouter,
   });
   app.use(router);
@@ -41,7 +37,7 @@ export function setupRouter(app: App, i18n: I18n): Router {
    * @param {*}
    * @return {*}
    */
-  createRouterGuards(router, i18n, locale);
+  createRouterGuards(router);
   return router;
 }
 

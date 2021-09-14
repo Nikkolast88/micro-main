@@ -21,18 +21,18 @@ async function bootstrap() {
   // 注册状态管理器
   setupStore(app);
 
+  // 注册国际化
+  setupI18n(app);
+
   // 注册微前端
   setupMicroApps();
 
-  // 注册国际化
-  const i18n = setupI18n(app);
-
   // 注册路由
-  const router = setupRouter(app, i18n);
+  const router = setupRouter(app);
 
   await router.isReady();
   // 挂载dom
-  app.mount('#app');
+  app.mount('#root');
 }
 
 void bootstrap();
