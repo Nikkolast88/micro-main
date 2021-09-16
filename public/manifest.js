@@ -1,12 +1,13 @@
 window.manifest = {
-  API: '//192.168.49.35:93/lamp-solution',
+  API: '//192.168.49.91:86/iot-api',
+  IMG: '//',
   NAME: '主应用',
   APPS: [
     {
-      name: '子应用',
+      name: 'micro-sub',
       entry: '//localhost:8081',
       container: '#app',
-      activeRule: '/micro-sub'
+      activeRule: '/#/micro-sub'
     }
   ]
 };

@@ -2,7 +2,15 @@
 namespace DTO {
   namespace User {
     export type TUser = {
-      name: string;
+      token: string;
+      forceUpdPass: string;
+    };
+    export type TCaptcha = {
+      yPosition: number;
+      rand: string;
+      srcImage: string;
+      cutImage: string;
+      puzzleYAxis: string;
     };
   }
 }

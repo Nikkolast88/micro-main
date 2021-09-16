@@ -1,3 +1,3 @@
 export default {
-  menu: 'Menu',
+  'menu': 'Menu',
 };

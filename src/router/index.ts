@@ -1,8 +1,8 @@
 import { App } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import type { RouteRecordRaw, Router } from 'vue-router';
 import { createRouterGuards } from './RouterGuards';
-
+import { constantRouter } from './constantRouter';
 const modules = require.context('./modules', true, /\.ts$/);
 
 const routeModules: RouteRecordRaw[] = [];
@@ -14,22 +14,9 @@ modules.keys().forEach((key: string) => {
 });
 
 export function setupRouter(app: App): Router {
-  const constantRouter: Array<RouteRecordRaw> = [
-    {
-      path: '/',
-      name: 'Index',
-      component: () => import('@/views/System/index.vue'),
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: () => import('@/views/Login/index.vue'),
-    },
-  ];
-
   const router = createRouter({
-    history: createWebHistory(),
-    routes: constantRouter,
+    history: createWebHashHistory(),
+    routes: [...constantRouter, ...routeModules],
   });
   app.use(router);
   /**
