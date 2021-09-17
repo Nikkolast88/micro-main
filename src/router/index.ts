@@ -1,5 +1,5 @@
 import { App } from 'vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteRecordRaw, Router } from 'vue-router';
 import { createRouterGuards } from './RouterGuards';
 import { constantRouter } from './constantRouter';
@@ -15,7 +15,7 @@ modules.keys().forEach((key: string) => {
 
 export function setupRouter(app: App): Router {
   const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: [...constantRouter, ...routeModules],
   });
   app.use(router);

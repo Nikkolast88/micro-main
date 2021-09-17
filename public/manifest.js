@@ -5,9 +5,9 @@ window.manifest = {
   APPS: [
     {
       name: 'micro-sub',
-      entry: '//localhost:8081',
+      entry: '//localhost:8080',
       container: '#app',
-      activeRule: '/#/micro-sub'
+      activeRule: '/vue3'
     }
   ]
 };
