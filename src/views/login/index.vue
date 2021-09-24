@@ -161,7 +161,7 @@ const getImageVerifyCode = () => {
   });
 };
 const onLogIn = () => {
-  $router.push('/vue3');
+  $router.push('/micro-sub');
   // window.history.pushState({}, '', '/vue3');
   form.value.validate((valid: boolean) => {
     if (valid) {

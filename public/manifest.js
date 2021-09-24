@@ -1,3 +1,4 @@
+// 配置清单文件
 window.manifest = {
   API: '//192.168.49.91:86/iot-api',
   IMG: '//',
@@ -7,7 +8,7 @@ window.manifest = {
       name: 'micro-sub',
       entry: '//localhost:8080',
       container: '#app',
-      activeRule: '/vue3'
+      activeRule: '/micro-sub'
     }
   ]
 };
