@@ -6,7 +6,7 @@ window.manifest = {
   APPS: [
     {
       name: 'micro-sub',
-      entry: '//localhost:8080',
+      entry: '//localhost:8081',
       container: '#app',
       activeRule: '/micro-sub'
     }

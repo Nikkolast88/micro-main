@@ -16,5 +16,13 @@ const constantRouter: Array<RouteRecordRaw> = [
       title: '登录',
     },
   },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: () => import('@/views/Exception/404.vue'),
+    meta: {
+      title: '404',
+    },
+  },
 ];
 export { constantRouter };

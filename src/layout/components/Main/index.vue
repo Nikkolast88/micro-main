@@ -2,8 +2,8 @@
   <div class="layout-main">
     <PageHeader></PageHeader>
     <main class="layout-content">
-      <div class="page-container">
-        <div class="page-container-wrap">
+      <div class="page-header">
+        <div class="page-header-wrap">
           <Breadcrumb></Breadcrumb>
         </div>
       </div>

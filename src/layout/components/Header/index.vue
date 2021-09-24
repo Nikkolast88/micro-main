@@ -17,7 +17,7 @@
             </span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item>退出</el-dropdown-item>
+                <el-dropdown-item>退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -43,6 +43,7 @@ const headerStyle = {
     height: 48px;
     padding: 0;
     line-height: 48px;
+    background-color: #fff;
     &.header-fixed {
       position: fixed;
       top: 0;

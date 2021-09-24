@@ -1,7 +1,18 @@
 <template>
-  <div class="exception">404</div>
+  <div class="exception">
+    <div class="exception-404"></div>
+  </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({});
+<script setup lang="ts">
 </script>
+<style lang="scss">
+.exception {
+  text-align: center;
+  &-404 {
+    display: inline-block;
+    width: 800px;
+    height: 800px;
+    background: url('~@/assets/404.svg');
+  }
+}
+</style>
