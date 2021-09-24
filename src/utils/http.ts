@@ -109,24 +109,26 @@ class Http {
   // 处理全局应用错误
   // 我们可以根据状态代码处理一般的应用程序错误
   private handleError(error: { status: number }) {
-    const { status } = error;
+    if (error) {
+      const { status } = error;
 
-    switch (status) {
-      case 500: {
-        // Handle InternalServerError
-        break;
-      }
-      case 404: {
-        // Handle Forbidden
-        break;
-      }
-      case 401: {
-        // Handle Unauthorized
-        break;
-      }
-      case 300: {
-        // Handle TooManyRequests
-        break;
+      switch (status) {
+        case 500: {
+          // Handle InternalServerError
+          break;
+        }
+        case 404: {
+          // Handle Forbidden
+          break;
+        }
+        case 401: {
+          // Handle Unauthorized
+          break;
+        }
+        case 300: {
+          // Handle TooManyRequests
+          break;
+        }
       }
     }
 
