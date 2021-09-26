@@ -1,5 +1,5 @@
 const path = require('path');
-const publicPath = process.env.VUE_APP_IMG_URL;
+const assetPath = process.env.VUE_APP_ASSET_URL;
 
 module.exports = {
   publicPath: '/',
@@ -42,7 +42,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'fonts/[name].[hash:8].[ext]',
-            publicPath,
+            assetPath,
           },
         },
       })
@@ -57,7 +57,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'img/[name].[hash:8].[ext]',
-            publicPath,
+            assetPath,
           },
         },
       });
