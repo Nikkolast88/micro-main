@@ -45,7 +45,7 @@ import { RouteRecordRaw } from 'vue-router';
 import { ElMenu, ElMenuItem } from 'element-plus';
 import MenuItem from './MenuItem.vue';
 import Logo from '../Logo/index.vue';
-import Fold from '@/icons/fold.svg';
+import Fold from '@/icons/fold.svg?component';
 
 const currentMenu: RouteRecordRaw[] = reactive([]);
 const asideStyle = {

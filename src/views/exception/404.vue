@@ -6,7 +6,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import error404 from '@/assets/404.svg';
+import error404 from '@/assets/404.svg?component';
 </script>
 <style lang="scss">
 .exception {
@@ -15,7 +15,7 @@ import error404 from '@/assets/404.svg';
     display: inline-block;
     width: 800px;
     height: 800px;
-    background-image: url('~@/assets/images/login/login_bg.png');
+    background-image: url('~@/assets/404.svg');
   }
 }
 </style>

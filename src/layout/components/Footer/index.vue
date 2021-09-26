@@ -17,7 +17,7 @@
   </footer>
 </template>
 <script setup lang="ts">
-import copyright from '@/icons/copyright.svg';
+import copyright from '@/icons/copyright.svg?component';
 </script>
 <style lang="scss">
 .layout-footer {

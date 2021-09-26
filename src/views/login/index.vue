@@ -76,8 +76,8 @@ import { useRouter } from 'vue-router';
 import { PageFooter } from '@/layout/components/Footer';
 import Verify from './components/Verify.vue';
 import { getCaptchaImg, getUserLogin, postCaptchaVerify } from '@/api';
-import eyeInvisible from '@/icons/eye-invisible.svg';
-import eyeAnticon from '@/icons/eye-anticon.svg';
+import eyeInvisible from '@/icons/eye-invisible.svg?component';
+import eyeAnticon from '@/icons/eye-anticon.svg?component';
 import { getEncodeStr } from '@/utils';
 // import { UserLogin } from '@/api';
 const $router = useRouter();
@@ -196,8 +196,8 @@ const postCaptchaVerifyHandle = (left: number) => {
   });
 };
 const getUserLoginHandle = (temp: API.User.TLogin) => {
-  getUserLogin<DTO.User.TUser>(temp).then((resp) => {
-    console.log(resp);
+  getUserLogin<DTO.User.TUser>(temp).then(() => {
+    // resp
   });
 };
 </script>

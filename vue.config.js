@@ -17,15 +17,20 @@ module.exports = {
     config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 
     svgRule
+      .oneOf('component')
+      .resourceQuery(/component/)
       .use('vue-loader-v16')
       .loader('vue-loader-v16')
       .end()
       .use('vue-svg-loader')
       .loader('vue-svg-loader')
+      .end()
+      .end()
+      .oneOf('external')
+      .use('file-loader')
+      .loader('file-loader')
       .options({
-        svgo: {
-          plugins: [{ prefixIds: true }],
-        },
+        name: 'assets/[name].[hash:8].[ext]',
       });
     config.module
       .rule('fonts')
