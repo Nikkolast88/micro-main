@@ -1,9 +1,12 @@
 <template>
   <div class="exception">
-    <div class="exception-404"></div>
+    <div class="exception-404">
+      <error404></error404>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
+import error404 from '@/assets/404.svg';
 </script>
 <style lang="scss">
 .exception {
@@ -12,7 +15,7 @@
     display: inline-block;
     width: 800px;
     height: 800px;
-    background: url('~@/assets/404.svg');
+    background-image: url('~@/assets/images/login/login_bg.png');
   }
 }
 </style>

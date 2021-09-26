@@ -1,13 +1,13 @@
 <template>
   <el-config-provider :locale="locale">
-  <template v-if="routeName">
-    <router-view ></router-view>
-  </template>
-  <template v-else>
-    <layout>
-      <div id="app"></div>
-    </layout>
-  </template>
+    <template v-if="routeName">
+      <router-view></router-view>
+    </template>
+    <template v-else>
+      <layout>
+        <div id="app"></div>
+      </layout>
+    </template>
   </el-config-provider>
 </template>
 <script setup lang="ts">

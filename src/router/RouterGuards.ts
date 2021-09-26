@@ -1,6 +1,5 @@
-
 import { Router } from 'vue-router';
-const childrenPath = window.manifest.APPS.map(el => el.activeRule);
+const childrenPath = window.manifest.APPS.map((el) => el.activeRule);
 /**
  * @description: 路由守卫
  * @param {Router} router

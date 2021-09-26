@@ -1,5 +1,5 @@
-
 const path = require('path');
+const publicPath = process.env.VUE_APP_IMG_URL;
 
 module.exports = {
   publicPath: '/',
@@ -25,6 +25,35 @@ module.exports = {
       .options({
         svgo: {
           plugins: [{ prefixIds: true }],
+        },
+      });
+    config.module
+      .rule('fonts')
+      .use('url-loader')
+      .loader('url-loader')
+      .options({
+        limit: 4096, // 小于4kb将会被打包成 base64
+        fallback: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[hash:8].[ext]',
+            publicPath,
+          },
+        },
+      })
+      .end();
+    config.module
+      .rule('images')
+      .use('url-loader')
+      .loader('url-loader')
+      .options({
+        limit: 10240, // 小于4kb将会被打包成 base64
+        fallback: {
+          loader: 'file-loader',
+          options: {
+            name: 'img/[name].[hash:8].[ext]',
+            publicPath,
+          },
         },
       });
   },

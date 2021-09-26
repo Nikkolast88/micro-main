@@ -191,7 +191,6 @@ const sliderDown = (event: MouseEvent) => {
 const touchStartEvent = (e: TouchEvent) => {
   state.originX = e.changedTouches[0].pageX;
   state.originY = e.changedTouches[0].pageY;
-  console.log('state.originX', state.originX);
   state.isMouseDown = true;
 };
 const bindEvents = () => {

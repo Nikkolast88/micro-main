@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 interface Apps {
-  loader: () => void,
+  loader: () => void;
   name: string;
   entry: string;
   container: string;
