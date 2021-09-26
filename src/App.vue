@@ -23,7 +23,7 @@ const routeName = computed(() => $route.name);
 </script>
 <style lang="scss">
 @import './styles/__variables.scss';
-@import '~element-plus/dist/index.css';
+// @import '~element-plus/dist/index.css';
 @import './styles/index.scss';
 @import './styles/normalize.scss';
 #root {

@@ -142,6 +142,7 @@ foo({
 
 - 开发环境可以使用console，debugger等调试，但打包，未去除，会直接抛出异常，无法编译通过
 - svg如果是采用组件形式引入的话，要在后面加上?component，css的background中引入则不需要
+- sass compression-webpack-plugin,不要升级，新版支持webpack5
 
 - 键和值之间使用一致的空格
 

@@ -1,4 +1,6 @@
 const path = require('path');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const productionGzipExtensions = ['js', 'css'];
 const assetPath = process.env.VUE_APP_ASSET_URL;
 
 module.exports = {
@@ -63,14 +65,17 @@ module.exports = {
       });
   },
   configureWebpack: {
-    module: {
-      rules: [
-        {
-          test: /\.mjs$/,
-          include: /node_modules/,
-          type: 'javascript/auto',
-        },
-      ],
-    },
+    plugins: [
+      require('unplugin-element-plus/webpack')({
+        // options
+      }),
+      new CompressionWebpackPlugin({
+        filename: '[path][base].gz',
+        algorithm: 'gzip',
+        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+        threshold: 10240,
+        minRatio: 0.8,
+      }),
+    ],
   },
 };
