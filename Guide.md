@@ -153,6 +153,10 @@ foo({
 - Class样式命名尽量采用BEM命名法
 - 样式校验采用stylelint
 
+![http-bw][http-bw]
+
+[http-bw]:https://zh.javascript.info/article/coding-style/code-style.svg
+
 ## 建议配置
 
 - VsCode编辑器

@@ -1,10 +1,12 @@
 const path = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
+
 const assetPath = process.env.VUE_APP_ASSET_URL;
 
 module.exports = {
   publicPath: '/',
+  productionSourceMap: process.env.NODE_ENV === 'development',
   devServer: {
     port: 8080,
     headers: {
@@ -77,5 +79,27 @@ module.exports = {
         minRatio: 0.8,
       }),
     ],
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          bucket: {
+            name: 'bucket',
+            test: /[\\/]node_modules[\\/](@vue|vue-router|vuex|vue-i18n)[\\/]/,
+            priority: 11,
+          },
+          elementPlus: {
+            name: 'element-plus',
+            test: /[\\/]node_modules[\\/]element-plus[\\/]/,
+            priority: 10,
+          },
+          qiankun: {
+            name: 'qiankun',
+            test: /[\\/]node_modules[\\/](qiankun|single-spa)[\\/]/,
+            priority: 10,
+          },
+        },
+      },
+    },
   },
 };
