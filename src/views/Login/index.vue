@@ -34,10 +34,10 @@
                   "
                 >
                   <template v-if="state.passwordType === 'password'">
-                    <eyeInvisible />
+                    <!-- <eyeInvisible /> -->
                   </template>
                   <template v-else>
-                    <eyeAnticon />
+                    <!-- <eyeAnticon /> -->
                   </template>
                 </span>
               </template>
@@ -76,8 +76,8 @@ import { useRouter } from 'vue-router';
 import { PageFooter } from '@/layout/components/Footer';
 import Verify from './components/Verify.vue';
 import { getCaptchaImg, getUserLogin, postCaptchaVerify } from '@/api';
-import eyeInvisible from '@/icons/eye-invisible.svg?component';
-import eyeAnticon from '@/icons/eye-anticon.svg?component';
+// import eyeInvisible from '@/icons/eye-invisible.svg?component';
+// import eyeAnticon from '@/icons/eye-anticon.svg?component';
 import { getEncodeStr } from '@/utils';
 // import { UserLogin } from '@/api';
 const $router = useRouter();
