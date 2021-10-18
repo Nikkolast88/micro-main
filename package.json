@@ -12,12 +12,15 @@
     "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
   },
   "author": "",
-  "keywords": ["Vue3", "TypeScript"],
+  "keywords": [
+    "Vue3",
+    "TypeScript"
+  ],
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "axios": "^0.21.4",
     "dayjs": "^1.10.7",
-    "element-plus": "^1.1.0-beta.20",
+    "element-plus": "^1.1.0-beta.21",
     "qiankun": "^2.5.1",
     "vue": "^3.2.20",
     "vue-i18n": "^9.1.9",
@@ -49,7 +52,7 @@
     "stylelint-declaration-block-no-ignored-properties": "^2.4.0",
     "stylelint-order": "^4.1.0",
     "typescript": "~4.1.5",
-    "unplugin-element-plus": "^0.1.0",
+    "unplugin-element-plus": "^0.1.1",
     "vue-svg-loader": "^0.17.0-beta.2",
     "vue-template-compiler": "^2.6.14"
   },
