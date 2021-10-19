@@ -30,6 +30,7 @@ const sideStyle = {
     width: 100%;
     min-height: 100%;
   }
+
   &-has-sider {
     display: flex;
     flex: auto;

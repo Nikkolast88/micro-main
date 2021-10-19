@@ -288,16 +288,20 @@ defineExpose({
   background: #f6f7f9;
   border: 1px solid #dcdfe6;
 }
+
 .header {
   width: 100%;
   font-size: 14px;
+
   span {
     float: left;
   }
+
   .title {
     color: #000;
     line-height: 16px;
   }
+
   .el-icon-refresh {
     float: right;
     color: #808794;
@@ -305,16 +309,19 @@ defineExpose({
     cursor: pointer;
   }
 }
+
 .main-img {
   position: relative;
   flex: 1;
   margin: 10px 0;
   overflow: hidden;
+
   .slide-verify-block {
     position: absolute;
     top: 0;
     left: 0;
   }
+
   .slide-verify-info {
     position: absolute;
     top: 0;
@@ -327,11 +334,13 @@ defineExpose({
     color: #fff;
     font-size: 14px;
     background: rgba(0, 0, 0, 0.3);
+
     i {
       margin: 0 5px;
       font-size: 16px;
     }
   }
+
   .no-img {
     position: absolute;
     top: 0;
@@ -343,17 +352,20 @@ defineExpose({
     text-align: center;
   }
 }
+
 .slide-verify-slider {
   position: relative;
   width: 100%;
   height: 10px;
   background: #dcdfe6;
   border-radius: 6px;
+
   .slide-verify-slider-mask {
     position: absolute;
     top: 0;
     left: -10px;
     height: 20px;
+
     .slide-verify-slider-mask-item {
       position: absolute;
       top: -10px;
@@ -364,6 +376,7 @@ defineExpose({
         center center;
       cursor: pointer;
       transition: background 0.2s linear;
+
       &.disabled {
         pointer-events: none;
       }

@@ -21,13 +21,12 @@ module.exports = {
 
     svgRule.uses.clear();
     config.resolve.alias.set('@', path.resolve('./src'));
-    config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 
     svgRule
       .oneOf('component')
       .resourceQuery(/component/)
-      .use('vue-loader')
-      .loader('vue-loader')
+      .use('vue-loader-v16')
+      .loader('vue-loader-v16')
       .end()
       .use('vue-svg-loader')
       .loader('vue-svg-loader')

@@ -1,20 +1,29 @@
 {
   "name": "micro-main",
   "version": "0.1.0",
+  "description": "",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:dev": "vue-cli-service build --mode development",
+    "build:test": "vue-cli-service build --mode test",
+    "build:prod": "vue-cli-service build --mode production",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
   },
+  "author": "",
+  "keywords": [
+    "Vue3",
+    "TypeScript"
+  ],
   "dependencies": {
     "axios": "^0.23.0",
     "dayjs": "^1.10.7",
-    "element-plus": "1.1.0-beta.20",
+    "element-plus": "^1.1.0-beta.20",
     "qiankun": "^2.5.1",
     "vue": "^3.2.20",
-    "vue-i18n": "^9.2.0-beta.12",
+    "vue-i18n": "^9.2.0-beta.13",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
   },
@@ -51,7 +60,7 @@
     "stylelint-order": "^4.1.0",
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4",
-    "unplugin-element-plus": "0.1.0",
+    "unplugin-element-plus": "^0.1.0",
     "unplugin-vue-components": "^0.16.0",
     "vue-svg-loader": "^0.17.0-beta.2",
     "vue-template-compiler": "^2.6.14"

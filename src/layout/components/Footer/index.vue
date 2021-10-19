@@ -9,7 +9,7 @@
       </div>
       <div class="global-footer-copyright">
         <span class="anticon anticon-copyright">
-          <!-- <copyright /> -->
+          <copyright />
         </span>
         2021 7G智慧技术部出品
       </div>
@@ -17,7 +17,7 @@
   </footer>
 </template>
 <script setup lang="ts">
-// import copyright from '@/icons/copyright.svg?component';
+import copyright from '@/icons/copyright.svg?component';
 </script>
 <style lang="scss">
 .layout-footer {

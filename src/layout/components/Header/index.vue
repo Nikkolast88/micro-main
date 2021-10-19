@@ -44,11 +44,13 @@ const headerStyle = {
     padding: 0;
     line-height: 48px;
     background-color: #fff;
+
     &.header-fixed {
       position: fixed;
       top: 0;
       right: 0;
     }
+
     &-main {
       position: relative;
       display: flex;
@@ -56,12 +58,15 @@ const headerStyle = {
       height: 100%;
       padding: 0 16px;
       box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+
       > * {
         height: 100%;
       }
     }
+
     &-component {
       gap: 8px;
+
       .header-item {
         &-account {
           display: flex;
@@ -71,6 +76,7 @@ const headerStyle = {
           cursor: pointer;
           transition: all 0.3s;
         }
+
         &-avatar {
           position: relative;
           display: inline-block;
@@ -80,6 +86,7 @@ const headerStyle = {
           line-height: 24px;
           vertical-align: top;
           border-radius: 50%;
+
           img {
             display: block;
             width: 100%;
@@ -87,6 +94,7 @@ const headerStyle = {
             object-fit: cover;
           }
         }
+
         &-name {
           vertical-align: middle;
         }

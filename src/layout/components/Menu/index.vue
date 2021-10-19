@@ -32,7 +32,7 @@
       <div class="layout-aside-links">
         <div class="layout-aside-links-menu">
           <span class="acticon">
-            <!-- <Fold></Fold> -->
+            <Fold></Fold>
           </span>
         </div>
       </div>
@@ -45,7 +45,7 @@ import { RouteRecordRaw } from 'vue-router';
 import { ElMenu, ElMenuItem } from 'element-plus';
 import MenuItem from './MenuItem.vue';
 import Logo from '../Logo/index.vue';
-// import Fold from '@/icons/fold.svg?component';
+import Fold from '@/icons/fold.svg?component';
 
 const currentMenu: RouteRecordRaw[] = reactive([]);
 const asideStyle = {
@@ -68,6 +68,7 @@ const asideStyle = {
     overflow-x: hidden;
     box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
   }
+
   &-children {
     display: flex;
     flex-direction: column;
@@ -75,12 +76,15 @@ const asideStyle = {
     margin-top: -0.1px;
     padding-top: 0.1px;
   }
+
   &-links {
     width: 100%;
     color: #333;
+
     .acticon {
       font-size: 16px;
     }
+
     &-menu {
       height: 40px;
       margin-top: 4px;

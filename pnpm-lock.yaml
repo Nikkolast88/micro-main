@@ -19,7 +19,7 @@ specifiers:
   babel-jest: ^27.3.0
   compression-webpack-plugin: ^9.0.0
   dayjs: ^1.10.7
-  element-plus: 1.1.0-beta.20
+  element-plus: ^1.1.0-beta.20
   eslint: ^7.32.0
   eslint-plugin-prettier: ^3.4.1
   eslint-plugin-vue: ^7.19.1
@@ -37,10 +37,10 @@ specifiers:
   stylelint-order: ^4.1.0
   ts-jest: ^27.0.7
   typescript: ^4.4.4
-  unplugin-element-plus: 0.1.0
+  unplugin-element-plus: ^0.1.0
   unplugin-vue-components: ^0.16.0
   vue: ^3.2.20
-  vue-i18n: ^9.2.0-beta.12
+  vue-i18n: ^9.2.0-beta.13
   vue-router: ^4.0.12
   vue-svg-loader: ^0.17.0-beta.2
   vue-template-compiler: ^2.6.14

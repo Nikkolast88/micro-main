@@ -14,6 +14,7 @@
     overflow: hidden;
     line-height: 64px;
     white-space: nowrap;
+
     img {
       width: auto;
       height: 32px;

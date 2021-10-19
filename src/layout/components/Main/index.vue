@@ -29,8 +29,10 @@ import Breadcrumb from '../Breadcrumb/index.vue';
   flex-direction: column;
   width: 0;
   min-height: 100vh;
+
   .page-content {
     width: 100%;
+
     &-wrap {
       margin: 24px 24px 0;
     }
