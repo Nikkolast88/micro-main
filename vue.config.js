@@ -1,4 +1,4 @@
-// const path = require('path');
+const path = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
 
@@ -14,28 +14,28 @@ module.exports = {
     },
   },
   chainWebpack: (config) => {
-    // const svgRule = config.module.rule('svg');
+    const svgRule = config.module.rule('svg');
 
-    // svgRule.uses.clear();
-    // config.resolve.alias.set('@', path.resolve('./src'));
-    // config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
+    svgRule.uses.clear();
+    config.resolve.alias.set('@', path.resolve('./src'));
+    config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 
-    // svgRule
-    //   .oneOf('component')
-    //   .resourceQuery(/component/)
-    //   .use('vue-loader-v16')
-    //   .loader('vue-loader-v16')
-    //   .end()
-    //   .use('vue-svg-loader')
-    //   .loader('vue-svg-loader')
-    //   .end()
-    //   .end()
-    //   .oneOf('external')
-    //   .use('file-loader')
-    //   .loader('file-loader')
-    //   .options({
-    //     name: 'assets/[name].[hash:8].[ext]',
-    //   });
+    svgRule
+      .oneOf('component')
+      .resourceQuery(/component/)
+      .use('vue-loader')
+      .loader('vue-loader-v16')
+      .end()
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader')
+      .end()
+      .end()
+      .oneOf('external')
+      .use('file-loader')
+      .loader('file-loader')
+      .options({
+        name: 'assets/[name].[hash:8].[ext]',
+      });
     config.module
       .rule('fonts')
       .use('url-loader')
@@ -67,10 +67,20 @@ module.exports = {
       });
   },
   configureWebpack: {
+    // https://github.com/element-plus/element-plus/issues/3923
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
+        },
+      ],
+    },
     plugins: [
-      // require('unplugin-element-plus/webpack')({
-      //   // options
-      // }),
+      require('unplugin-element-plus/webpack')({
+        // options
+      }),
       new CompressionWebpackPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',
