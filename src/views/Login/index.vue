@@ -69,7 +69,7 @@
     <PageFooter />
   </div>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ElForm, ElFormItem, ElInput, ElButton } from 'element-plus';
 import { reactive, ref, nextTick, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
@@ -204,6 +204,7 @@ const getUserLoginHandle = (temp: API.User.TLogin) => {
 <style lang="scss">
 @import '@/styles/components/custom-input.scss';
 @import '@/styles/components/custom-button.scss';
+
 .user-login {
   &-container {
     display: flex;
@@ -216,19 +217,23 @@ const getUserLoginHandle = (temp: API.User.TLogin) => {
     background-position: center;
     background-size: cover;
   }
+
   &-lang {
     display: none;
   }
+
   &-content {
     flex: 1 1;
     padding: 32px 0;
     text-align: right;
   }
+
   &-title {
     color: #1989fa;
     font-size: 32px;
     text-align: center;
   }
+
   &-main {
     display: inline-block;
     width: 500px;

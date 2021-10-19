@@ -16,7 +16,7 @@ import { ElConfigProvider } from 'element-plus';
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 import Layout from '@/layout/index.vue';
 import { useRoute } from 'vue-router';
-// import enUS from 'element-plus/lib/locale/lang/en';
+
 const locale = zhCn;
 const $route = useRoute();
 const routeName = computed(() => $route.name);
@@ -26,6 +26,7 @@ const routeName = computed(() => $route.name);
 // @import '~element-plus/dist/index.css';
 @import './styles/index.scss';
 @import './styles/normalize.scss';
+
 #root {
   width: 100%;
   height: 100%;

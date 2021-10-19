@@ -4,6 +4,9 @@ const productionGzipExtensions = ['js', 'css'];
 
 const assetPath = process.env.VUE_APP_ASSET_URL;
 
+// const Components = require('unplugin-vue-components/webpack');
+// const { ElementPlusResolver } = require('unplugin-vue-components/resolvers');
+
 module.exports = {
   publicPath: '/',
   productionSourceMap: process.env.NODE_ENV === 'development',
@@ -24,7 +27,7 @@ module.exports = {
       .oneOf('component')
       .resourceQuery(/component/)
       .use('vue-loader')
-      .loader('vue-loader-v16')
+      .loader('vue-loader')
       .end()
       .use('vue-svg-loader')
       .loader('vue-svg-loader')
@@ -68,19 +71,22 @@ module.exports = {
   },
   configureWebpack: {
     // https://github.com/element-plus/element-plus/issues/3923
-    module: {
-      rules: [
-        {
-          test: /\.mjs$/,
-          include: /node_modules/,
-          type: 'javascript/auto',
-        },
-      ],
-    },
+    // module: {
+    //   rules: [
+    //     {
+    //       test: /\.mjs$/,
+    //       include: /node_modules/,
+    //       type: 'javascript/auto',
+    //     },
+    //   ],
+    // },
     plugins: [
       require('unplugin-element-plus/webpack')({
         // options
       }),
+      // Components({
+      //   resolvers: [ElementPlusResolver()],
+      // }),
       new CompressionWebpackPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',

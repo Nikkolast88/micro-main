@@ -24,15 +24,19 @@
   flex: 0 0 auto;
   padding: 0;
   color: rgba(0, 0, 0, 0.85);
+
   .global-footer {
     margin: 48px 0 24px;
     text-align: center;
+
     &-links {
       margin-bottom: 8px;
+
       a {
         margin-right: 40px;
       }
     }
+
     .anticon {
       display: inline-block;
       color: inherit;

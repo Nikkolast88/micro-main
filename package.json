@@ -1,64 +1,74 @@
 {
   "name": "micro-main",
   "version": "0.1.0",
-  "description": "",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:dev": "vue-cli-service build --mode development",
-    "build:test": "vue-cli-service build --mode test",
-    "build:prod": "vue-cli-service build --mode production",
-    "lint": "vue-cli-service lint",
-    "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,scss}\" --cache --cache-location node_modules/.cache/stylelint/"
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
   },
-  "author": "",
-  "keywords": [
-    "Vue3",
-    "TypeScript"
-  ],
   "dependencies": {
-    "@element-plus/icons": "^0.0.11",
-    "axios": "^0.21.4",
+    "axios": "^0.23.0",
     "dayjs": "^1.10.7",
-    "element-plus": "^1.1.0-beta.21",
+    "element-plus": "1.1.0-beta.20",
     "qiankun": "^2.5.1",
     "vue": "^3.2.20",
-    "vue-i18n": "^9.1.9",
+    "vue-i18n": "^9.2.0-beta.12",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
-    "@vue/cli-plugin-eslint": "^4.5.14",
-    "@vue/cli-plugin-router": "^4.5.14",
-    "@vue/cli-plugin-typescript": "^4.5.14",
-    "@vue/cli-plugin-vuex": "^4.5.14",
-    "@vue/cli-service": "^4.5.14",
+    "@vue/cli-plugin-eslint": "^5.0.0-beta.6",
+    "@vue/cli-plugin-router": "^5.0.0-beta.6",
+    "@vue/cli-plugin-typescript": "^5.0.0-beta.6",
+    "@vue/cli-plugin-unit-jest": "^5.0.0-beta.6",
+    "@vue/cli-plugin-vuex": "^5.0.0-beta.6",
+    "@vue/cli-service": "^5.0.0-beta.6",
     "@vue/compiler-sfc": "^3.2.20",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
-    "compression-webpack-plugin": "^6.1.1",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.3.1",
+    "@vue/test-utils": "^2.0.0-rc.16",
+    "@vue/vue3-jest": "^27.0.0-alpha.1",
+    "babel-jest": "^27.3.0",
+    "compression-webpack-plugin": "^9.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-vue": "^7.19.1",
+    "jest": "^27.3.0",
+    "lint-staged": "^11.2.3",
     "prettier": "^2.4.1",
     "sass": "^1.43.2",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^12.2.0",
     "stylelint": "^13.13.1",
-    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.4.0",
     "stylelint-order": "^4.1.0",
-    "typescript": "~4.1.5",
-    "unplugin-element-plus": "^0.1.3",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4",
+    "unplugin-element-plus": "0.1.0",
+    "unplugin-vue-components": "^0.16.0",
     "vue-svg-loader": "^0.17.0-beta.2",
     "vue-template-compiler": "^2.6.14"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not dead"
-  ]
+    "not dead",
+    "not ie 11"
+  ],
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest/presets/typescript"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": "vue-cli-service lint"
+  }
 }

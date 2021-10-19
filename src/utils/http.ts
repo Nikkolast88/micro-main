@@ -4,10 +4,10 @@ import { HttpResponse } from '@/typings/http';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import qs from 'qs';
 
-const headers: Readonly<Record<string, string | boolean>> = {
+const headers: Readonly<Record<string, string>> = {
   Accept: 'application/json',
   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-  'Access-Control-Allow-Credentials': true,
+  'Access-Control-Allow-Credentials': 'true',
   'X-Requested-With': 'XMLHttpRequest',
 };
 
@@ -17,7 +17,10 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
   try {
     // 拦截并转换数据
     const headers = config.headers;
-    if (headers['Content-Type'] !== 'application/json; charset=UTF-8') {
+    if (
+      headers &&
+      headers['Content-Type'] !== 'application/json; charset=UTF-8'
+    ) {
       if (
         Object.prototype.toString.call(config.data) !== '[object FormData]' &&
         config.data
@@ -29,7 +32,9 @@ const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
     const token = localStorage.getItem('accessToken');
 
     if (token != null) {
-      config.headers.Authorization = `Bearer ${token}`;
+      if (headers) {
+        headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   } catch (error) {
@@ -56,9 +61,9 @@ class Http {
     );
 
     http.interceptors.response.use(
-      (response: AxiosResponse<HttpResponse<null>>) => {
+      (response: AxiosResponse<unknown, unknown>) => {
         const data = response.data;
-        return this.handleBackError(data);
+        return this.handleBackError(data as HttpResponse<unknown>);
       },
       (error) => {
         const { response } = error;
@@ -135,7 +140,7 @@ class Http {
     return Promise.reject(error);
   }
   // 接口200，后端抛出的异常
-  private handleBackError(data: HttpResponse<null>) {
+  private handleBackError(data: HttpResponse<unknown>) {
     const { status, body, msg } = data;
     switch (status) {
       case 401:
