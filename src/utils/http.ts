@@ -1,169 +1,97 @@
 // http.ts
 
 import { HttpResponse } from '@/typings/http';
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import qs from 'qs';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+// import qs from 'qs';
+// import { useI18n } from 'vue-i18n';
+import { getLanguage } from '@/plugins';
+
+// const { t } = useI18n();
 
 const headers: Readonly<Record<string, string>> = {
   Accept: 'application/json',
   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-  'Access-Control-Allow-Credentials': 'true',
-  'X-Requested-With': 'XMLHttpRequest',
+  'Accept-Lang': getLanguage(),
 };
 
 // We can use the following function to inject the JWT token through an interceptor
 // We get the `accessToken` from the localStorage that we set when we authenticate
-const injectToken = (config: AxiosRequestConfig): AxiosRequestConfig => {
+const InterceptRequestConfig = (
+  config: AxiosRequestConfig,
+): AxiosRequestConfig => {
   try {
     // 拦截并转换数据
-    const headers = config.headers;
-    if (
-      headers &&
-      headers['Content-Type'] !== 'application/json; charset=UTF-8'
-    ) {
-      if (
-        Object.prototype.toString.call(config.data) !== '[object FormData]' &&
-        config.data
-      ) {
-        config.data = qs.stringify(config.data);
-      }
-    }
-    // 存放token
-    const token = localStorage.getItem('accessToken');
+    // const headers = config.headers;
+    // if (
+    //   headers &&
+    //   headers['Content-Type'] !== 'application/json; charset=UTF-8'
+    // ) {
+    //   if (
+    //     Object.prototype.toString.call(config.data) !== '[object FormData]' &&
+    //     config.data
+    //   ) {
+    //     config.data = qs.stringify(config.data);
+    //   }
+    // }
+    // // 存放token
+    // const token = localStorage.getItem('accessToken');
 
-    if (token != null) {
-      if (headers) {
-        headers.Authorization = `Bearer ${token}`;
-      }
-    }
+    // if (token != null) {
+    //   if (headers) {
+    //     headers.Authorization = `Bearer ${token}`;
+    //   }
+    // }
     return config;
   } catch (error) {
     throw new Error(error as string);
   }
 };
 
-class Http {
-  private instance: AxiosInstance | null = null;
+// 注册axios
+const setupHttp = () => {
+  const http = axios.create({
+    baseURL: window.manifest.API,
+    headers,
+    withCredentials: true,
+  });
 
-  private get http(): AxiosInstance {
-    return this.instance != null ? this.instance : this.initHttp();
+  http.interceptors.request.use(InterceptRequestConfig, (error) =>
+    Promise.reject(error),
+  );
+
+  http.interceptors.response.use(
+    (response: AxiosResponse<unknown, unknown>) => {
+      const data = response.data;
+      return handleBackError(data as HttpResponse<unknown>);
+    },
+    (error) => {
+      const { response } = error;
+      return handleError(response);
+    },
+  );
+
+  // this.instance = http;
+  return http;
+};
+
+// 处理全局应用错误
+// 我们可以根据状态代码处理一般的应用程序错误
+const handleError = (error: { status: number }) => {
+  if (error) {
+    // const { status } = error;
+    // return t(status);
   }
 
-  initHttp() {
-    const http = axios.create({
-      baseURL: window.manifest.API,
-      headers,
-      withCredentials: true,
-    });
-
-    http.interceptors.request.use(injectToken, (error) =>
-      Promise.reject(error),
-    );
-
-    http.interceptors.response.use(
-      (response: AxiosResponse<unknown, unknown>) => {
-        const data = response.data;
-        return this.handleBackError(data as HttpResponse<unknown>);
-      },
-      (error) => {
-        const { response } = error;
-        return this.handleError(response);
-      },
-    );
-
-    this.instance = http;
-    return http;
+  return Promise.reject(error);
+};
+// 接口200，后端抛出的异常
+const handleBackError = (data: HttpResponse<unknown>) => {
+  const { status, body, msg } = data;
+  // 0 成功
+  if (status === 0) {
+    return Promise.resolve(body);
   }
-
-  request<T = unknown, R = AxiosResponse<T>>(
-    config: AxiosRequestConfig,
-  ): Promise<R> {
-    return this.http.request(config);
-  }
-
-  get<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<R> {
-    return this.http.get<T, R>(url, config);
-  }
-
-  post<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    data?: T,
-    config?: AxiosRequestConfig,
-  ): Promise<R> {
-    return this.http.post<T, R>(url, data, config);
-  }
-
-  put<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    data?: T,
-    config?: AxiosRequestConfig,
-  ): Promise<R> {
-    return this.http.put<T, R>(url, data, config);
-  }
-
-  delete<T = unknown, R = AxiosResponse<T>>(
-    url: string,
-    config?: AxiosRequestConfig,
-  ): Promise<R> {
-    return this.http.delete<T, R>(url, config);
-  }
-
-  // 处理全局应用错误
-  // 我们可以根据状态代码处理一般的应用程序错误
-  private handleError(error: { status: number }) {
-    if (error) {
-      const { status } = error;
-
-      switch (status) {
-        case 500: {
-          // Handle InternalServerError
-          break;
-        }
-        case 404: {
-          // Handle Forbidden
-          break;
-        }
-        case 401: {
-          // Handle Unauthorized
-          break;
-        }
-        case 300: {
-          // Handle TooManyRequests
-          break;
-        }
-      }
-    }
-
-    return Promise.reject(error);
-  }
-  // 接口200，后端抛出的异常
-  private handleBackError(data: HttpResponse<unknown>) {
-    const { status, body, msg } = data;
-    switch (status) {
-      case 401:
-        //认证未通过
-        break;
-      case 402:
-        // 请求参数错误
-        break;
-      case 403:
-        // 业务异常
-        break;
-      case 500:
-        // 服务器错误
-        break;
-      case 501:
-        // 接口未授权
-        break;
-      default:
-        // 0 成功
-        return Promise.resolve(body);
-    }
-    return Promise.reject(msg);
-  }
-}
-
-export const http = new Http();
+  return Promise.reject(msg);
+};
+// }
+export const http = setupHttp();

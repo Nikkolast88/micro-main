@@ -1,12 +1,16 @@
-import { App, nextTick } from 'vue';
-import { createI18n, I18n, Composer } from 'vue-i18n';
-import zhCN from '@/locales/zh';
+import { App } from 'vue';
+import { createI18n, I18n } from 'vue-i18n';
+import zhCN from '@/locales/zhCN';
+import enUS from '@/locales/enUS';
 
-export const SUPPORT_LOCALES = ['en', 'zh'];
+export const loadedLanguages = ['zh', 'en']; // 我们的预装默认语言
 
 const messages = {
-  zh: {
+  'zh-CN': {
     ...zhCN,
+  },
+  'en-US': {
+    ...enUS,
   },
 };
 /**
@@ -14,32 +18,15 @@ const messages = {
  * @param {*}
  * @return {*}
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const i18n: any = createI18n({
-  globalInjection: true,
+const i18n = createI18n<false>({
   legacy: false,
-  locale: 'zh', // 设定语言
-  fallbackLocale: 'zh', // 翻译缺少时回退的语言
-  messages: {
-    zh: messages.zh,
-  },
+  locale: 'zh-CN',
+  fallbackLocale: 'en-US',
+  messages: messages,
 });
-/**
- * @description: 挂载国际化
- * @param {App} app
- * @return {*}
- */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function setupI18n(app: App): I18n {
-  app.use(i18n);
-  return i18n;
-}
 export function setI18nLanguage(locale: string): void {
-  if (i18n.mode === 'legacy') {
-    i18n.global.locale = locale;
-  } else {
-    (i18n.global as unknown as Composer).locale.value = locale;
-  }
+  i18n.global.locale.value = locale;
+
   /**
    * NOTE:
    * If you need to specify the language setting for headers, such as the `fetch` API, set it here.
@@ -47,24 +34,37 @@ export function setI18nLanguage(locale: string): void {
    *
    * axios.defaults.headers.common['Accept-Language'] = locale
    */
-  (document.querySelector('html') as HTMLElement).setAttribute('lang', locale);
+  document.querySelector('html')?.setAttribute('lang', locale);
 }
-export async function loadLocaleMessages(
-  i18n: I18n,
-  locale: string,
-): Promise<void> {
-  // load locale messages
+export async function loadLanguageAsync(locale: string): Promise<void> {
+  // 如果语言相同
+  if (i18n.global.locale.value === locale) {
+    return Promise.resolve(setI18nLanguage(locale));
+  }
+
+  // 如果语言已经加载
+  if (loadedLanguages.includes(locale)) {
+    return Promise.resolve(setI18nLanguage(locale));
+  }
+
+  // 如果尚未加载语言
   const messages = await import(
-    /* webpackChunkName: "locale-[request]" */ `@/locales/${locale}.ts`
+    /* webpackChunkName: "locale-[request]" */ `../../locales/${locale}.json`
   );
-
-  // set locale and locale message
   i18n.global.setLocaleMessage(locale, messages.default);
-
-  return nextTick();
 }
 export function getLanguage(): string {
-  return '';
+  return i18n.global.locale.value;
 }
 
+/**
+ * @description: 挂载国际化
+ * @param {App} app
+ * @return {*}
+ */
+
+export function setupI18n(app: App): I18n {
+  app.use(i18n);
+  return i18n;
+}
 export default i18n;
