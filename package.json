@@ -76,7 +76,6 @@
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": "vue-cli-service lint"

@@ -6,7 +6,7 @@ const assetPath = process.env.VUE_APP_ASSET_URL;
 
 // const Components = require('unplugin-vue-components/webpack');
 // const { ElementPlusResolver } = require('unplugin-vue-components/resolvers');
-
+console.log(require('unplugin-element-plus/webpack'));
 module.exports = {
   publicPath: '/',
   productionSourceMap: process.env.NODE_ENV === 'development',
