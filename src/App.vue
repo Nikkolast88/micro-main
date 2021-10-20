@@ -14,7 +14,7 @@
 import { computed } from 'vue';
 import { ElConfigProvider } from 'element-plus';
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
-import Layout from '@/layout/index.vue';
+import { Layout } from '@/components/Layout';
 import { useRoute } from 'vue-router';
 
 const locale = zhCn;

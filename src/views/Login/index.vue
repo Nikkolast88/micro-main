@@ -73,14 +73,16 @@
 import { ElForm, ElFormItem, ElInput, ElButton } from 'element-plus';
 import { reactive, ref, nextTick, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { PageFooter } from '@/layout/components/Footer';
+import { PageFooter } from '@/components/Layout';
 import Verify from './components/Verify.vue';
 import { getCaptchaImg, getUserLogin, postCaptchaVerify } from '@/api';
 import eyeInvisible from '@/icons/eye-invisible.svg?component';
 import eyeAnticon from '@/icons/eye-anticon.svg?component';
 import { getEncodeStr } from '@/utils';
+import { useStore } from 'vuex';
 // import { UserLogin } from '@/api';
 const $router = useRouter();
+const $store = useStore();
 // UserLogin<DTO.User.TUser>({ loginName: '', password: '' }).then((resp) => {
 //   console.log(resp.name);
 // });
@@ -161,8 +163,6 @@ const getImageVerifyCode = () => {
   });
 };
 const onLogIn = () => {
-  $router.push('/micro-sub');
-  // window.history.pushState({}, '', '/vue3');
   form.value.validate((valid: boolean) => {
     if (valid) {
       const temp = {
@@ -196,7 +196,9 @@ const postCaptchaVerifyHandle = (left: number) => {
   });
 };
 const getUserLoginHandle = (temp: API.User.TLogin) => {
-  getUserLogin<DTO.User.TUser>(temp).then(() => {
+  getUserLogin<DTO.User.TUser>(temp).then((resp) => {
+    $router.push('/micro-sub');
+    $store.dispatch('user/setToken', resp.token);
     // resp
   });
 };

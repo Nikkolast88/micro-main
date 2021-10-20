@@ -1,3 +1,3 @@
 export default {
-  menu: '菜单',
+  'component.menu': '菜单',
 };

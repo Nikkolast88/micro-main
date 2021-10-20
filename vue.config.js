@@ -4,9 +4,6 @@ const productionGzipExtensions = ['js', 'css'];
 
 const assetPath = process.env.VUE_APP_ASSET_URL;
 
-// const Components = require('unplugin-vue-components/webpack');
-// const { ElementPlusResolver } = require('unplugin-vue-components/resolvers');
-console.log(require('unplugin-element-plus/webpack'));
 module.exports = {
   publicPath: '/',
   productionSourceMap: process.env.NODE_ENV === 'development',
@@ -69,18 +66,8 @@ module.exports = {
       });
   },
   configureWebpack: {
-    // https://github.com/element-plus/element-plus/issues/3923
-    // module: {
-    //   rules: [
-    //     {
-    //       test: /\.mjs$/,
-    //       include: /node_modules/,
-    //       type: 'javascript/auto',
-    //     },
-    //   ],
-    // },
     plugins: [
-      require('unplugin-element-plus/webpack')({
+      require('unplugin-element-plus/webpack').default({
         // options
       }),
       // Components({

@@ -46,6 +46,7 @@ specifiers:
   vue-svg-loader: ^0.17.0-beta.2
   vue-template-compiler: ^2.6.14
   vuex: ^4.0.2
+  vuex-persistedstate: ^4.1.0
 
 dependencies:
   axios: 0.23.0
@@ -56,6 +57,7 @@ dependencies:
   vue-i18n: 9.2.0-beta.13_vue@3.2.20
   vue-router: 4.0.12_vue@3.2.20
   vuex: 4.0.2_vue@3.2.20
+  vuex-persistedstate: 4.1.0_vuex@4.0.2
 
 devDependencies:
   '@types/jest': 27.0.2
@@ -3546,7 +3548,6 @@ packages:
   /deepmerge/4.2.2:
     resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /default-gateway/6.0.3:
     resolution: {integrity: sha512-fwSOJsbbNzZ/CUFpqFBqYfYNLj1NbMPm8MMCIzHjC83iSJRBEGmDUxU+WP661BaBQImeC2yHwXtz+P/O9o+XEg==}
@@ -8878,6 +8879,10 @@ packages:
     resolution: {integrity: sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==}
     dev: true
 
+  /shvl/2.0.3:
+    resolution: {integrity: sha512-V7C6S9Hlol6SzOJPnQ7qzOVEWUQImt3BNmmzh40wObhla3XOYMe4gGiYzLrJd5TFa+cI2f9LKIRJTTKZSTbWgw==}
+    dev: false
+
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
     dependencies:
@@ -10429,6 +10434,16 @@ packages:
       '@vue/runtime-dom': 3.2.20
       '@vue/server-renderer': 3.2.20_vue@3.2.20
       '@vue/shared': 3.2.20
+    dev: false
+
+  /vuex-persistedstate/4.1.0_vuex@4.0.2:
+    resolution: {integrity: sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ==}
+    peerDependencies:
+      vuex: ^3.0 || ^4.0.0-rc
+    dependencies:
+      deepmerge: 4.2.2
+      shvl: 2.0.3
+      vuex: 4.0.2_vue@3.2.20
     dev: false
 
   /vuex/4.0.2_vue@3.2.20:

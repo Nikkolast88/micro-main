@@ -7,4 +7,5 @@ export {
   loadedLanguages,
   setI18nLanguage,
   getLanguage,
+  getTranslate,
 } from './modules/I18n';

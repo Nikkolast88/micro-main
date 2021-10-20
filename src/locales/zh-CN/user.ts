@@ -1,5 +1,5 @@
 export default {
-  username: '用户名',
-  password: '登录',
-  signup: '登录',
+  'user.username': '用户名',
+  'user.password': '登录',
+  'user.signup': '登录',
 };

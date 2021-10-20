@@ -1,6 +1,7 @@
 import { App } from 'vue';
 import { createStore } from 'vuex';
-
+import createPersistedState from 'vuex-persistedstate';
+import getters from './getters';
 // 加载所有模块。
 function loadModules() {
   const context = require.context('./modules', false, /([a-z_]+)\.ts$/i);
@@ -26,6 +27,12 @@ const { context, modules } = loadModules();
 
 const store = createStore({
   modules,
+  getters,
+  plugins: [
+    createPersistedState({
+      storage: window.sessionStorage,
+    }),
+  ],
 });
 
 if (module.hot) {

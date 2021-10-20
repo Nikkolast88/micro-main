@@ -3,15 +3,15 @@ import { ActionTree } from 'vuex';
 const state = {
   token: '',
 };
-interface State {
+export interface UserState {
   token: string;
 }
 const mutations = {
-  setToken(state: State, payload: string): void {
+  setToken(state: UserState, payload: string): void {
     state.token = payload;
   },
 };
-const actions: ActionTree<State, unknown> = {
+const actions: ActionTree<UserState, unknown> = {
   setToken({ commit }, payload: string): void {
     commit('setToken', payload);
   },

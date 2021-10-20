@@ -3,14 +3,10 @@
 import { HttpResponse } from '@/typings/http';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 // import qs from 'qs';
-// import { useI18n } from 'vue-i18n';
-import { getLanguage } from '@/plugins';
-
-// const { t } = useI18n();
-
+import { getTranslate, getLanguage } from '@/plugins';
+import store from '@/store';
 const headers: Readonly<Record<string, string>> = {
   Accept: 'application/json',
-  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   'Accept-Lang': getLanguage(),
 };
 
@@ -20,6 +16,10 @@ const InterceptRequestConfig = (
   config: AxiosRequestConfig,
 ): AxiosRequestConfig => {
   try {
+    const headers = config.headers;
+    // 如果不存在，直接返回config
+    if (!headers) return config;
+    headers['token'] = store.getters.token;
     // 拦截并转换数据
     // const headers = config.headers;
     // if (
@@ -78,8 +78,8 @@ const setupHttp = () => {
 // 我们可以根据状态代码处理一般的应用程序错误
 const handleError = (error: { status: number }) => {
   if (error) {
-    // const { status } = error;
-    // return t(status);
+    const { status } = error;
+    return getTranslate(status);
   }
 
   return Promise.reject(error);
@@ -91,7 +91,7 @@ const handleBackError = (data: HttpResponse<unknown>) => {
   if (status === 0) {
     return Promise.resolve(body);
   }
-  return Promise.reject(msg);
+  return Promise.reject(getTranslate(msg));
 };
 // }
 export const http = setupHttp();
