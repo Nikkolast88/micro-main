@@ -4,19 +4,21 @@ import type { RouteRecordRaw, Router } from 'vue-router';
 import { createRouterGuards } from './RouterGuards';
 import { constantRouter } from './constantRouter';
 const modules = require.context('./modules', true, /\.ts$/);
-
-const routeModules: RouteRecordRaw[] = [];
+const routeModuleList: RouteRecordRaw[] = [];
 
 modules.keys().forEach((key: string) => {
   const mod = modules(key).default || {};
   const modList = Array.isArray(mod) ? [...mod] : [mod];
-  routeModules.push(...modList);
+  routeModuleList.push(...modList);
 });
+
+//需要验证权限
+export const asyncRoutes = [...routeModuleList];
 
 export function setupRouter(app: App): Router {
   const router = createRouter({
     history: createWebHistory(),
-    routes: [...constantRouter, ...routeModules],
+    routes: [...constantRouter, ...routeModuleList],
   });
   app.use(router);
   /**

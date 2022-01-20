@@ -12,6 +12,16 @@ body,html{
   padding: 0;
 }
 
-.acticon {
-  cursor: pointer;
+/** 全局icon样式 */
+.icon-anticon {
+  display: inline-block;
+
+  .i-icon {
+    display: inline-block;
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }

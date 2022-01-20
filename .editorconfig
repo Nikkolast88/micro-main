@@ -13,5 +13,5 @@ insert_final_newline = true
 [*.{js, ts}]
 quote_type = single
 
-[*.{html, less, css, json}]
+[*.{html, scss, css, json}]
 quote_type = double

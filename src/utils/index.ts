@@ -1,3 +1,5 @@
+import { Icon } from '@icon-park/vue-next/lib/runtime';
+import { h } from 'vue';
 export function getEncodeStr(str: string): string {
   const A = 'Uog8X3DJl5tIdvxmWAfCuLYPH4cQbzM6BVkh2TOR7ENnKspaiw1rGjF9S0qyZe';
   if (!str || str == '') return '';
@@ -21,4 +23,13 @@ export function getEncodeStr(str: string): string {
     }
   }
   return result;
+}
+
+/**
+ * 渲染vue组件，html字符串
+ * @param icon Icon
+ * @returns VNode
+ */
+export function renderIcon(icon: Icon) {
+  return () => h(icon);
 }

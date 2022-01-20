@@ -4,7 +4,7 @@ import { HttpResponse } from '@/typings/http';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 // import qs from 'qs';
 import { getTranslate, getLanguage } from '@/plugins';
-import store from '@/store';
+import { useUserStore } from '@/store/modules/user';
 const headers: Readonly<Record<string, string>> = {
   Accept: 'application/json',
   'Accept-Lang': getLanguage(),
@@ -16,10 +16,13 @@ const InterceptRequestConfig = (
   config: AxiosRequestConfig,
 ): AxiosRequestConfig => {
   try {
+    const userStore = useUserStore();
     const headers = config.headers;
     // 如果不存在，直接返回config
     if (!headers) return config;
-    headers['token'] = store.getters.token;
+    if (userStore.token) {
+      headers['token'] = userStore.token;
+    }
     // 拦截并转换数据
     // const headers = config.headers;
     // if (

@@ -11,7 +11,7 @@ const constantRouter: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/Login/index.vue'),
+    component: () => import('@/views/Login/LoginView.vue'),
     meta: {
       title: '登录',
     },
@@ -19,10 +19,11 @@ const constantRouter: Array<RouteRecordRaw> = [
   {
     path: '/404',
     name: 'NotFound',
-    component: () => import('@/views/Exception/404.vue'),
+    component: () => import('@/views/Exception/NotFound.vue'),
     meta: {
       title: '404',
     },
   },
 ];
+export const Layout = () => import('@/components/Layout/index.vue');
 export { constantRouter };

@@ -4,6 +4,8 @@ import zhCN from '@/locales/zhCN';
 import enUS from '@/locales/enUS';
 
 export const loadedLanguages = ['zh-CN', 'en-US']; // 我们的预装默认语言
+import { useSettings } from '@/hooks';
+const defaultSettings = useSettings();
 
 const messages = {
   'zh-CN': {
@@ -20,7 +22,8 @@ const messages = {
  */
 const i18n = createI18n<false>({
   legacy: false,
-  locale: 'zh-CN',
+  locale: defaultSettings.menu && defaultSettings.menu.default,
+  globalInjection: true,
   fallbackLocale: 'en-US',
   messages: messages,
 });

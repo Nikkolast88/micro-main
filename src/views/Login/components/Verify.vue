@@ -97,6 +97,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  /* 刷新 */
   fresh: {
     type: Boolean,
     default: false,
@@ -333,7 +334,7 @@ defineExpose({
     height: 100%;
     color: #fff;
     font-size: 14px;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgb(0 0 0 / 30%);
 
     i {
       margin: 0 5px;

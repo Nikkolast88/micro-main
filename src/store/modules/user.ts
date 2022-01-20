@@ -1,25 +1,21 @@
-import { ActionTree } from 'vuex';
+import { defineStore } from 'pinia';
 
-const state = {
-  token: '',
-};
-export interface UserState {
-  token: string;
+interface UserState {
+  token: string | undefined;
 }
-const mutations = {
-  setToken(state: UserState, payload: string): void {
-    state.token = payload;
+export const useUserStore = defineStore({
+  id: 'useUserStore',
+  state: (): UserState => ({
+    token: undefined,
+  }),
+  getters: {
+    getToken(): string {
+      return this.token || '';
+    },
   },
-};
-const actions: ActionTree<UserState, unknown> = {
-  setToken({ commit }, payload: string): void {
-    commit('setToken', payload);
+  actions: {
+    setToken(payload: string | undefined) {
+      this.token = payload;
+    },
   },
-};
-
-export default {
-  namespace: true,
-  state,
-  mutations,
-  actions,
-};
+});
