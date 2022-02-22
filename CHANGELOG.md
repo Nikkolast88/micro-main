@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.2 (2022-02-22)
+
+
+### Bug Fixes
+
+* git大小写 ([e1005ad](https://github.com/Nikkolast88/micro-main/commit/e1005adbb772c4aa3a96346508b0fc6affeabcf2))
+
 ### 0.1.1 (2021-12-24)
 
 
