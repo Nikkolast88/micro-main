@@ -14,7 +14,8 @@
     "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "prepare": "husky install",
     "commit": "git add . && git-cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "icons":"node src/icons/index.js"
   },
   "author": "",
   "keywords": [
