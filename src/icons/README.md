@@ -1,15 +1,8 @@
-# SVG 目录
+# SVG 图标使用方法
 
-## 图标集合
+```html
+<svg-icon class="menu-fold"></svg-icon>
+```
 
-  ![copyright](packages/copyright.svg)
-
-  ![expand](packages/expand.svg)
-
-  ![preview-open](packages/preview-open.svg)
-
-  ![preview-close](packages/preview-close.svg)
-
-  ![menu-fold](packages/menu-fold.svg)
-
-  ![schedule](packages/schedule.svg)
+![ICONS](ICONS.md)
+ICONS.md
