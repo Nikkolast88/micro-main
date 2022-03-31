@@ -23,23 +23,20 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Nikkolast88/micro-main">
-    <img src="public/favicon.ico" alt="Logo" width="80" height="80">
-  </a>
 
   <h3 align="center">micro-main</h3>
 
   <p align="center">
     An qiankun micro-app boilerplate.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Nikkolast88/micro-main"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/Nikkolast88/micro-main">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/Nikkolast88/micro-main/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/Nikkolast88/micro-main/issues">Request Feature</a>
   </p>
 </div>
 
