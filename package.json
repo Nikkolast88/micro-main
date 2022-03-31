@@ -15,7 +15,7 @@
     "prepare": "husky install",
     "commit": "git add . && git-cz",
     "release": "standard-version",
-    "icons":"node src/icons/index.js"
+    "icons": "node src/icons/index.js"
   },
   "author": "",
   "keywords": [
@@ -63,7 +63,7 @@
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.1",
-    "sass": "^1.49.9",
+    "sass": "^1.49.10",
     "sass-loader": "^12.6.0",
     "standard-version": "^9.3.2",
     "stylelint": "^14.6.1",
@@ -75,7 +75,7 @@
     "stylelint-order": "^5.0.0",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.3",
-    "unplugin-element-plus": "^0.3.2"
+    "unplugin-element-plus": "^0.3.3"
   },
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript"
