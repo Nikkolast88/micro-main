@@ -3,11 +3,11 @@
     <template v-if="routeName">
       <router-view></router-view>
     </template>
-    <template v-else>
-      <Layout>
-        <div id="app"></div>
-      </Layout>
-    </template>
+    <!-- <template v-else> -->
+    <Layout>
+      <div id="app"></div>
+    </Layout>
+    <!-- </template> -->
   </el-config-provider>
 </template>
 <script setup lang="ts">
